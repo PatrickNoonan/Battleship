@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BattleShip
 {
     class CPU : Player
-    {
+    {/*
         //Does have
         public Random random;
         public int RandomCoord;
@@ -23,12 +23,12 @@ namespace BattleShip
         //Can do this
         public override void ChooseYourTarget()
         {
-            /*
+          
             int index = random.Next(TargetList.Count);
             TargetChoice = TargetList[index];
             Validate.IsItValid(TargetChoice);
             return TargetChoice;
-            */
+            
 
             Console.WriteLine("Which coordinates would you like to attack? ( x )");
             xToAttack = int.Parse(Console.ReadLine());
@@ -40,5 +40,7 @@ namespace BattleShip
         {
             RandomCoord = random.Next(Max);
         }
+        */
+    
     }
 }

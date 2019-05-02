@@ -14,7 +14,7 @@ namespace BattleShip
         public bool HasBeenAttacked;
         public bool WasHit;
         public bool WasMissed;
-
+        public string ShipKind;
 
         //Constructor
         public GridSquares()
@@ -23,6 +23,7 @@ namespace BattleShip
             HasBeenAttacked = false;
             WasHit = false;
             WasMissed = false;
+            ShipKind = "";
 
         }
         //Can do this

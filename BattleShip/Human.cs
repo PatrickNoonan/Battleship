@@ -22,7 +22,7 @@ namespace BattleShip
         public override void PlaceYourShips()
         {
             //console log (where would you like to place your destroyer?, x and y)
-            PlaceYourDingy();
+            //PlaceYourDingy();
             /*
             PlaceYourDestroyer();
             PlaceYourSubmarine();
@@ -31,14 +31,14 @@ namespace BattleShip
             */
         }
 
-        public void PlaceYourDingy()
+        public override List<int> PlaceYourDingy(string Player)
         {
-            Console.WriteLine("What starting x coordinate would you like to choose?");
+            Console.WriteLine($"{Player}, What starting x coordinate would you like to choose?");
             xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What starting y coordinate would you like to choose?");
+            Console.WriteLine($"{Player}, What starting y coordinate would you like to choose?");
             yToStart = int.Parse(Console.ReadLine());
             DingyLocation = new List<int> { xToStart, yToStart };
-            MyGameBoard.MarkShipLocation(DingyLocation[0], DingyLocation[1]);
+            return DingyLocation;
         }
         public void PlaceYourDestroyer()
         {
@@ -87,16 +87,17 @@ namespace BattleShip
             Console.WriteLine("What ending y coorinate would you like to choose?(Can be 5 more of less than start, must keep starting input of other axis)");
             yToEnd = int.Parse(Console.ReadLine());
             AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
-        }
+        }        
         
-        
-        public override void ChooseYourTarget()
+        public override List<int> ChooseYourTarget()
         {
             Console.WriteLine("Which coordinates would you like to attack? ( x )");
             xToAttack = int.Parse(Console.ReadLine());
             Console.WriteLine("Which coordinates would you like to attack? ( y )");
             yToAttack = int.Parse(Console.ReadLine());
-            //Validate.IsItValid(GestureChoice);            
+            AttackLocation = new List<int> { xToAttack, yToAttack };
+            return AttackLocation;
+
         }
     }
 }

@@ -29,6 +29,7 @@ namespace BattleShip
         public List<int> SubmarineLocation;
         public List<int> BattleshipLocation;
         public List<int> AircraftCarrierLocation;
+        public List<int> AttackLocation;
 
 
 
@@ -49,11 +50,21 @@ namespace BattleShip
         {
             
         }
+        public virtual List<int> PlaceYourDingy(string Player)
+        {
+            return  new List<int> { };
+        }
 
         public virtual void MarkShipLocation(int x, int y)
         {
 
         }
+
+        public virtual List<int> ChooseYourTarget()
+        {
+            return new List<int> { };
+        }
+
         public void ThisPlayerWon()
         {
             WinCount++;
@@ -80,7 +91,7 @@ namespace BattleShip
             EnemyShipsSunk++;
         }       
 
-        public virtual void ChooseYourTarget() { }
+        
 
     }
 }

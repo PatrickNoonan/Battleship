@@ -9,7 +9,7 @@ namespace BattleShip
     class Game
     {
         //has these
-        Player PlayerTwo;       
+        Player PlayerTwo;
         Player PlayerOne;
         /*InputValidation Validate;
         Gestures2 MadeGestures;        
@@ -43,43 +43,53 @@ namespace BattleShip
         {
             //if (round == 0)
             //{
-                EnterMainMenu();
+            EnterMainMenu();
             //}
             MyGameBoard.IstantiateCoordinates();
+            SetShips();
             StartGame();
             //DecideWinner();
             //CalculateSeriesLeader();
             //CheckForGameOver(MatchCountInt);
             //DisplaySeriesWinner();
-            
-    }
-    public void EnterMainMenu()
-    {
-        Console.WriteLine("Welcome to Battleship.  Would you like to play vs an AI, or vs a Human? (AI or Human)");
-        string PlayerTwoAIStatus = Console.ReadLine().ToLower();
-        //Validate.IsItValid(PlayerTwoAIStatus);
-        Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
-        MatchCount = Console.ReadLine().ToLower();
-        MatchCountInt = int.Parse(MatchCount);
-        MyGameBoard.UsersChoiceOfSize();
-            
 
-        if (PlayerTwoAIStatus == "human")
-        {
-            PlayerTwo = new Human();
         }
-        else if (PlayerTwoAIStatus == "ai")
+        public void EnterMainMenu()
         {
-            PlayerTwo = new CPU();
+            Console.WriteLine("Welcome to Battleship.  Would you like to play vs an AI, or vs a Human? (AI or Human)");
+            string PlayerTwoAIStatus = Console.ReadLine().ToLower();
+            //Validate.IsItValid(PlayerTwoAIStatus);
+            Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
+            MatchCount = Console.ReadLine().ToLower();
+            MatchCountInt = int.Parse(MatchCount);
+            MyGameBoard.UsersChoiceOfSize();
+
+
+            if (PlayerTwoAIStatus == "human")
+            {
+                PlayerTwo = new Human();
+            }
+            else if (PlayerTwoAIStatus == "ai")
+            {
+                PlayerTwo = new CPU();
+            }
         }
-    }
 
 
-    public void StartGame()
-    {
-        PlayerOne.PlaceYourShips();
-        PlayerTwo.PlaceYourShips();
+        public void SetShips()
+        {
+            List<int> DingyLocationP1 = PlayerOne.PlaceYourDingy("PlayerOne");
+            List<int> DingyLocationP2 = PlayerTwo.PlaceYourDingy("PlayerTwo");
+            MyGameBoard.MarkShipLocation(DingyLocationP1[0], DingyLocationP1[1], "dingy");
+            MyGameBoard.MarkShipLocation(DingyLocationP2[0], DingyLocationP2[1], "dingy");
+        }
 
+        public void StartGame()
+        {
+            List<int> AttackLocationP1 = PlayerOne.ChooseYourTarget();
+            List<int> AttackLocationP2 = PlayerTwo.ChooseYourTarget();
+            MyGameBoard.MarkTileAsAttacked(AttackLocationP1[0], AttackLocationP1[1]);
+            MyGameBoard.MarkTileAsAttacked(AttackLocationP2[0], AttackLocationP2[1]);
         }
         /*
 
@@ -134,5 +144,5 @@ namespace BattleShip
 
     }
     */
-}
+    }
 }
