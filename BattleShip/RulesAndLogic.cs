@@ -33,6 +33,7 @@ namespace BattleShip
     --Create a turn based system where the player gets to choose which square of the grid to attack, after the attack happens,
     --display all squares on the grid that have been attacked up to this point, displayed as hits and misses.
     --if the player desires, he should be able to display which squares on his own grid side have been hit or missed up to this point
+    --when iterating through the grid, continue over certain squares
     
     
     The game should keep track of which ships have been completely destroyed. This is a way to keep score.

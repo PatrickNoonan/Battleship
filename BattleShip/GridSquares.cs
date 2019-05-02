@@ -10,10 +10,10 @@ namespace BattleShip
     {
         //Does have
         
-        bool ShipIsOn;
-        bool HasBeenAttacked;
-        bool WasHit;
-        bool WasMissed;
+        public bool ShipIsOn;
+        public bool HasBeenAttacked;
+        public bool WasHit;
+        public bool WasMissed;
 
 
         //Constructor
@@ -26,7 +26,6 @@ namespace BattleShip
 
         }
         //Can do this
-
         
     }
 }

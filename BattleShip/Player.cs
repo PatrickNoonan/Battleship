@@ -9,8 +9,9 @@ namespace BattleShip
     abstract class Player
     {
         //Does have
-        public List<string> ShipList;
         //public InputValidation Validate;
+        public GameBoard MyGameBoard;
+        public List<string> ShipList;        
         public double WinCount;
         public double TotalHits;
         public double TotalMisses;
@@ -23,6 +24,11 @@ namespace BattleShip
         public int yToStart;
         public int xToEnd;
         public int yToEnd;
+        public List<int> DingyLocation;
+        public List<int> DestroyerLocation;
+        public List<int> SubmarineLocation;
+        public List<int> BattleshipLocation;
+        public List<int> AircraftCarrierLocation;
 
 
 
@@ -35,14 +41,19 @@ namespace BattleShip
             TotalMisses = 0;
             ShipsRemaining = 4;
             EnemyShipsSunk = 0;
+            MyGameBoard = new GameBoard();
 
         }
         //Can do this
-        public virtual void PlaceYourDestroyer(){}
-        public virtual void PlaceYourSubmarine() { }
-        public virtual void PlaceYourBattleship() { }
-        public virtual void PlaceYourAircraftcarrier() { }
+        public virtual void PlaceYourShips()
+        {
+            
+        }
 
+        public virtual void MarkShipLocation(int x, int y)
+        {
+
+        }
         public void ThisPlayerWon()
         {
             WinCount++;

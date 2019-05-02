@@ -26,7 +26,7 @@ namespace BattleShip
         public void ThisShipWasHit()
         {
             HitsTaken++;
-            //if HitsTaken = ShipSize "You sunk my whatever"
+            //if (HitsTaken = ShipSize) "You sunk my whatever"
         }
 
     }

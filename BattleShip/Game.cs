@@ -20,9 +20,10 @@ namespace BattleShip
         double round;
         double[] GridSize;
         */
-        GameBoard MyGameBoard = new GameBoard();        
-        string MatchCount; double MatchCountInt;
-        double MatchHalf;
+        public GameBoard MyGameBoard;
+        public string MatchCount;
+        public double MatchCountInt;
+        public double MatchHalf;
 
         //Constructor
         public Game()
@@ -33,6 +34,7 @@ namespace BattleShip
             round = 0;
             */
             PlayerOne = new Human();
+            MyGameBoard = new GameBoard();
 
         }
 
@@ -43,7 +45,8 @@ namespace BattleShip
             //{
                 EnterMainMenu();
             //}
-            //StartGame();
+            MyGameBoard.IstantiateCoordinates();
+            StartGame();
             //DecideWinner();
             //CalculateSeriesLeader();
             //CheckForGameOver(MatchCountInt);
@@ -71,14 +74,14 @@ namespace BattleShip
         }
     }
 
-    /*
 
     public void StartGame()
     {
-        ChoiceOne = PlayerOne.ChooseYourTarget();
-        ChoiceTwo = PlayerTwo.ChooseYourTarget();
+        PlayerOne.PlaceYourShips();
+        PlayerTwo.PlaceYourShips();
 
-    }
+        }
+        /*
 
     public void DecideWinner()
     {

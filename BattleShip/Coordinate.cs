@@ -9,13 +9,21 @@ namespace BattleShip
     class Coordinate : GridSquares
     {
         //Does have
-        string location;
+       // public string location;
+        /*
+        public int LocalX;
+        public int LocalY;
+        */
 
 
         //Constructor
-        public Coordinate(int x, int y)
+        public Coordinate()
         {
-            location = "x is " + x + " y is " + y;
+           //location = "x is " + x + " y is " + y;
+            /*
+            LocalX = x;
+            LocalY = y;
+            */
         }
 
 
