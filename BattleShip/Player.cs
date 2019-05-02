@@ -17,7 +17,14 @@ namespace BattleShip
         public double ShipsRemaining;
         public double EnemyShipsSunk;
         public string ShipType;
-        
+        public int xToAttack;
+        public int yToAttack;
+        public int xToStart;
+        public int yToStart;
+        public int xToEnd;
+        public int yToEnd;
+
+
 
         //Constructor
         public Player()
@@ -31,6 +38,10 @@ namespace BattleShip
 
         }
         //Can do this
+        public virtual void PlaceYourDestroyer(){}
+        public virtual void PlaceYourSubmarine() { }
+        public virtual void PlaceYourBattleship() { }
+        public virtual void PlaceYourAircraftcarrier() { }
 
         public void ThisPlayerWon()
         {
@@ -56,12 +67,9 @@ namespace BattleShip
         {
             //Console.WriteLine($"You sunk an enemy {ShipType}")
             EnemyShipsSunk++;
-        }
+        }       
 
-        public virtual string ChooseYourTarget()
-        {
-            return "";
-        }
+        public virtual void ChooseYourTarget() { }
 
     }
 }

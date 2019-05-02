@@ -12,11 +12,13 @@ namespace BattleShip
         public double HitsTaken;
         public double ShipSize;
         public double PlacementOnGrid;
+        public bool IsHidden;
 
         //Ship Yard
         public Ship()
         {
             HitsTaken = 0;
+            IsHidden = true;
         }
 
         //Can do this

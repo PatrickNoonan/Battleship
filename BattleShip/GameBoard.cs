@@ -9,22 +9,35 @@ namespace BattleShip
     class GameBoard
     {
         //has these
-        double[,] GridSize;
-        public int HeightInput;
+        Coordinate[,] GameGrid;
         public int WidthInput;
+        public int HeightInput;
 
         //Constructor
         public GameBoard()
         {
-            GridSize = new double[HeightInput, WidthInput];
+            GameGrid = new Coordinate[WidthInput, HeightInput];
+            
         }        
         //does this
-        public void UsersChoiceOfSize(string height, string width)
+        public void UsersChoiceOfSize()
         {
-            
-            HeightInput = int.Parse(height);
-            WidthInput = int.Parse(width);
+            Console.WriteLine("What size would you like the gameboard to be? (Equal height and width between 20 and 30)");
+            WidthInput = int.Parse(Console.ReadLine());
+            HeightInput = int.Parse(Console.ReadLine());
 
+            //PlayerTwo.RandomNumber(WidthInput);
+        }
+
+        public void IstantiateCoordinates()
+        {
+            for (int y = 0; y < HeightInput; y++)
+            {
+                for (int x = 0; x < WidthInput; x++)
+                {
+                    GameGrid[x, y] = new Coordinate(x, y);
+                }
+            }
         }
     }
 }

@@ -11,23 +11,21 @@ namespace BattleShip
         /*
          * 
          * 2 Player Battleship
-    Using a two-dimensional array, create a battleship game board (minimum space size of 20x20) for each player. 
-    --instantiate a game board map consisting of two arrays of at least20 indeces, each
-    --use nested loop https://www.youtube.com/watch?v=0mMI__LFJDc
-    --array of objects that hold squares hit or not hit bool?
-    --can player choose game grid size?
-    --class GameGrid ThisGrid = new GameGrid();
-    --create a parent player class with a human subclass that can be instantiated into playerone and playertwo
+    ++Using a two-dimensional array, create a battleship game board (minimum space size of 20x20)  
+    ++--instantiate a game board map consisting of two arrays of at least20 indeces, each
+    ++--use nested loop https://www.youtube.com/watch?v=0mMI__LFJDc
+    ++--array of objects that hold squares hit or not hit bool?
+   --can player attack same square twice? no..
 
     Allow the player to place a destroyer (space size: 2), submarine (space size: 3), battleship 
     (space size: 4, and aircraft carrier (space size: 5) on the game board. Check to make sure that they do not overlap. 
-    --Create a parents class that has a shipyard/ship spawner/ship constructor, inside the parent class you will have
-    -- the traits all ships will have, but you will have subclasses for specific ships with their specific sizes
+    ++--Create a parents class that has a shipyard/ship spawner/ship constructor, inside the parent class you will have
+    ++-- the traits all ships will have, but you will have subclasses for specific ships with their specific sizes  
     
     Ensure that each player can place their ships on the game board and that the ship locations will be hidden from the other player. 
     (You can assume that each player will move away from the screen when it is not their turn). 
-    --make a class that allows each player, one at a time, to place their pieces on the game board.
-    --this could possibly be a member method inside the indiviual player class or part of a start game menu, or maybe seperate class
+    ++--make a method that allows each player, one at a time, to place their pieces on the game board.
+    --HOLD The AI will pick coordinates at random, within limits of course, HOLD
 
     On each player turn they should be presented with a console print out of the other player’s board as they know it. 
     (Ships and parts of ships that haven’t been hit should be hidden, misses should be displayed. 

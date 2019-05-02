@@ -9,59 +9,57 @@ namespace BattleShip
     class Game
     {
         //has these
-        /*Player PlayerTwo;
-        InputValidation Validate;
+        Player PlayerTwo;       
         Player PlayerOne;
-        Gestures2 MadeGestures;
-        string MatchCount;
+        /*InputValidation Validate;
+        Gestures2 MadeGestures;        
         string KeepPlaying;
         string WhoWon;
         string ChoiceOne;
-        string ChoiceTwo;
-        double MatchCountInt;
-        double MatchHalf;
+        string ChoiceTwo;        
         double round;
         double[] GridSize;
         */
+        GameBoard MyGameBoard = new GameBoard();        
+        string MatchCount; double MatchCountInt;
+        double MatchHalf;
 
         //Constructor
         public Game()
         {
             /*
-            Validate = new InputValidation();
-            PlayerOne = new HumanPlayer();
+            Validate = new InputValidation();            
             MadeGestures = new Gestures2();
             round = 0;
             */
+            PlayerOne = new Human();
 
         }
 
         //does this
         public void RunGame()
         {
-            /*
-            if (round == 0)
-            {
+            //if (round == 0)
+            //{
                 EnterMainMenu();
-            }
-            StartGame();
-            DecideWinner();
-            CalculateSeriesLeader();
-            CheckForGameOver(MatchCountInt);
-            DisplaySeriesWinner();
-            */
+            //}
+            //StartGame();
+            //DecideWinner();
+            //CalculateSeriesLeader();
+            //CheckForGameOver(MatchCountInt);
+            //DisplaySeriesWinner();
+            
     }
-    /*
     public void EnterMainMenu()
     {
         Console.WriteLine("Welcome to Battleship.  Would you like to play vs an AI, or vs a Human? (AI or Human)");
         string PlayerTwoAIStatus = Console.ReadLine().ToLower();
-        Validate.IsItValid(PlayerTwoAIStatus);
+        //Validate.IsItValid(PlayerTwoAIStatus);
         Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
         MatchCount = Console.ReadLine().ToLower();
         MatchCountInt = int.Parse(MatchCount);
-        Console.WriteLine("What size would you like the gameboard to be? (Equal height and width between 20 and 30)");
-        GridSize = Console.ReadLine()
+        MyGameBoard.UsersChoiceOfSize();
+            
 
         if (PlayerTwoAIStatus == "human")
         {
@@ -71,10 +69,9 @@ namespace BattleShip
         {
             PlayerTwo = new CPU();
         }
-
-
-
     }
+
+    /*
 
     public void StartGame()
     {
