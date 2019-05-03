@@ -18,7 +18,7 @@ namespace BattleShip
         public GameBoard()
         {
 
-        }        
+        }
 
 
         //does this
@@ -40,7 +40,7 @@ namespace BattleShip
                 {
                     GameSquare[x, y] = new Coordinate();
                 }
-            }                   
+            }
         }
 
         public void MarkShipLocation(List<int> ShipLocationList)
@@ -50,89 +50,44 @@ namespace BattleShip
             GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipKind = ShipType;
         }
 
-        public void MarkTileAsAttacked(List<int> TargetedTile, string Player)
+        public string MarkTileAsAttacked(List<int> TargetedTile, string Player)
         {
-            // GameSquare[TargetedTile[0], TargetedTile[0]].HasBeenAttacked = true;
-            //if a gamesquare has been attacked is should show an error if targeted again
-            //console.log for user to try a different input
-            if (Player == "PlayerOne")
+            if (GameSquare[TargetedTile[0], TargetedTile[0]].HasBeenAttacked == true)
+            {
+                return "previouslyAttacked";
+            }
+            else
             {
 
-                if (GameSquare[TargetedTile[0], TargetedTile[1]].ShipIsOn == true)
+                if (Player == "PlayerOne")
                 {
-                    GameSquare[TargetedTile[0], TargetedTile[1]].WasHit = true;
-                    //PlayerOne.ThisPlayerHit();
-
-                    switch (GameSquare[TargetedTile[0], TargetedTile[1]].ShipKind)
+                    if (GameSquare[TargetedTile[0], TargetedTile[1]].ShipIsOn == true)
                     {
-                        case "dingy":
-                            Console.WriteLine("You sunk my Dingy!.. jerk");
-                            Console.ReadLine();
-                            break;
-                        case "destroyer":
-                            Console.WriteLine("You hit enemy Destroyer!");
-                            Console.ReadLine();
-                            break;
-                        case "submarine":
-                            Console.WriteLine("You hit enemy Submarine!");
-                            Console.ReadLine();
-                            break;
-                        case "battleship":
-                            Console.WriteLine("You hit enemy Battleship!");
-                            Console.ReadLine();
-                            break;
-                        case "aircraftcarrier":
-                            Console.WriteLine("You hit enemy AircraftCarrier!");
-                            Console.ReadLine();
-                            break;
-                    }
+                        GameSquare[TargetedTile[0], TargetedTile[1]].WasHit = true;
+                        return GameSquare[TargetedTile[0], TargetedTile[1]].ShipKind;
 
+                    }
+                    else
+                    {
+                        GameSquare[TargetedTile[0], TargetedTile[1]].WasMiss = true;
+                        return "miss";
+                    }
                 }
                 else
                 {
-                    GameSquare[TargetedTile[0], TargetedTile[1]].WasMiss = true;
-                    //PlayerOne.ThisPlayerMissed();
-                }
-            } else 
-            {
 
-                if (GameSquare[TargetedTile[0], TargetedTile[1]].ShipIsOn == true)
-                {
-                    GameSquare[TargetedTile[0], TargetedTile[1]].WasHit = true;
-                    
-                    switch (GameSquare[TargetedTile[0], TargetedTile[1]].ShipKind)
+                    if (GameSquare[TargetedTile[0], TargetedTile[1]].ShipIsOn == true)
                     {
-                        case "dingy":
-                            Console.WriteLine("You sunk my Dingy!.. jerk");
-                            Console.ReadLine();
-                            break;
-                        case "destroyer":
-                            //PlayerTwo.ThisPlayerHitDestroyer();
-                            Console.WriteLine("You hit enemy Destroyer!");
-                            Console.ReadLine();
-                            break;
-                        case "submarine":
-                            Console.WriteLine("You hit enemy Submarine!");
-                            Console.ReadLine();
-                            break;
-                        case "battleship":
-                            Console.WriteLine("You hit enemy Battleship!");
-                            Console.ReadLine();
-                            break;
-                        case "aircraftcarrier":
-                            Console.WriteLine("You hit enemy AircraftCarrier!");
-                            Console.ReadLine();
-                            break;
+                        GameSquare[TargetedTile[0], TargetedTile[1]].WasHit = true;
+                        return GameSquare[TargetedTile[0], TargetedTile[1]].ShipKind;
                     }
-
-                }
-                else
-                {
-                    GameSquare[TargetedTile[0], TargetedTile[1]].WasMiss = true;
-                    //PlayerTwo.ThisPlayerMissed();
+                    else
+                    {
+                        GameSquare[TargetedTile[0], TargetedTile[1]].WasMiss = true;
+                        return "miss";
+                    }
                 }
             }
-
 
         }
     }

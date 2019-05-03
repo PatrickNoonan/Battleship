@@ -9,13 +9,15 @@ namespace BattleShip
     class Game
     {
         //has these
+        public Player PlayerOne;
         public Player PlayerTwo;
-        public Player PlayerOne;        
         public GameBoard GameBoardP1;
         public GameBoard GameBoardP2;
         public string MatchCount;
         public double MatchCountInt;
         public double MatchHalf;
+        public string PlayerOneAttackResults;
+        public string PlayerTwoAttackResults;
         /*InputValidation Validate;
         Gestures2 MadeGestures;        
         string KeepPlaying;
@@ -35,6 +37,7 @@ namespace BattleShip
             round = 0;
             */
             PlayerOne = new Human();
+            PlayerTwo = new Human();
             GameBoardP1 = new GameBoard();
             GameBoardP2 = new GameBoard();
 
@@ -100,13 +103,102 @@ namespace BattleShip
         public void StartGame()
         {
             PlayerOne.ChooseYourTarget();
-            GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
+            PlayerOneAttackResults = GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
+            PlayerAttackCheck(PlayerOneAttackResults, "PlayerOne");
+
 
             PlayerTwo.ChooseYourTarget();
-            GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
+            PlayerTwoAttackResults = GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
+            PlayerAttackCheck(PlayerTwoAttackResults, "PlayerTwo");
 
         }
 
+        public void PlayerAttackCheck(string Ship, string Player)
+        {
+            if (Player == "PlayerOne")
+            {
+
+                switch (Ship)
+                {
+                    case "previouslyAttacked":
+                        Console.WriteLine("This tile has already been attacked!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerMissed();
+                        break;
+                    case "miss":
+                        Console.WriteLine("You missed!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerMissed();
+                        break;
+                    case "dingy":
+                        Console.WriteLine("You sunk my Dingy!.. jerk");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitDingy();
+                        break;
+                    case "destroyer":
+                        Console.WriteLine("You hit enemy Destroyer!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerHitDestroyer();
+                        break;
+                    case "submarine":
+                        Console.WriteLine("You hit enemy Submarine!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerHitSubmarine();
+                        break;
+                    case "battleship":
+                        Console.WriteLine("You hit enemy Battleship!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerHitBattleship();
+                        break;
+                    case "aircraftcarrier":
+                        Console.WriteLine("You hit enemy AircraftCarrier!");
+                        Console.ReadLine();
+                        PlayerOne.ThisPlayerHitAircraftcarrier();
+                        break;
+                }
+            }
+            else
+            {
+                switch (Ship)
+                {
+                    case "previouslyAttacked":
+                        Console.WriteLine("This tile has already been attacked!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerMissed();
+                        break;
+                    case "miss":
+                        Console.WriteLine("You missed!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerMissed();
+                        break;
+                    case "dingy":
+                        Console.WriteLine("You sunk my Dingy!.. jerk");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitDingy();
+                        break;
+                    case "destroyer":
+                        Console.WriteLine("You hit enemy Destroyer!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitDestroyer();
+                        break;
+                    case "submarine":
+                        Console.WriteLine("You hit enemy Submarine!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitSubmarine();
+                        break;
+                    case "battleship":
+                        Console.WriteLine("You hit enemy Battleship!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitBattleship();
+                        break;
+                    case "aircraftcarrier":
+                        Console.WriteLine("You hit enemy AircraftCarrier!");
+                        Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitAircraftcarrier();
+                        break;
+                }
+            }
+        }
 
         /*
 
