@@ -78,10 +78,10 @@ namespace BattleShip
 
         public void SetShips()
         {
-            List<int> DingyLocationP1 = PlayerOne.PlaceYourDingy("PlayerOne");
-            List<int> DingyLocationP2 = PlayerTwo.PlaceYourDingy("PlayerTwo");
-            MyGameBoard.MarkShipLocation(DingyLocationP1[0], DingyLocationP1[1], "dingy");
-            MyGameBoard.MarkShipLocation(DingyLocationP2[0], DingyLocationP2[1], "dingy");
+            List<int> ShipLocationP1 = PlayerOne.PlaceYourShip("PlayerOne");
+            List<int> ShipLocationP2 = PlayerTwo.PlaceYourShip("PlayerTwo");
+            MyGameBoard.MarkShipLocation(ShipLocationP1[0], ShipLocationP1[1], "ship");
+            MyGameBoard.MarkShipLocation(ShipLocationP2[0], ShipLocationP2[1], "ship");
         }
 
         public void StartGame()

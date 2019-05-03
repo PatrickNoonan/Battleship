@@ -19,76 +19,42 @@ namespace BattleShip
 
         }
         //Can do this
-        public override void PlaceYourShips()
-        {
-            //console log (where would you like to place your destroyer?, x and y)
-            //PlaceYourDingy();
-            /*
-            PlaceYourDestroyer();
-            PlaceYourSubmarine();
-            PlaceYourBattleship();
-            PlaceYourAircraftcarrier();
-            */
-        }
 
-        public override List<int> PlaceYourDingy(string Player)
+        public override void PlaceYourShip(string Player)
         {
-            Console.WriteLine($"{Player}, What starting x coordinate would you like to choose?");
-            xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine($"{Player}, What starting y coordinate would you like to choose?");
-            yToStart = int.Parse(Console.ReadLine());
-            DingyLocation = new List<int> { xToStart, yToStart };
-            return DingyLocation;
+            foreach (string ship in ShipList)
+            {
+                Console.WriteLine($"{Player}, What starting x coordinate would you like to choose for your {ship}?");
+                xToStart = int.Parse(Console.ReadLine());
+                Console.WriteLine($"{Player}, What starting y coordinate would you like to choose for your {ship}?");
+                yToStart = int.Parse(Console.ReadLine());
+                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship + 1)}");
+                xToEnd = int.Parse(Console.ReadLine());
+                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship + 1)}");
+                yToEnd = int.Parse(Console.ReadLine());
+                
+                switch (ship)
+                {
+                    case "dingy":
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        break;
+                    case "destroyer":
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        break;
+                    case "submarine":
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        break;
+                    case "battleship":
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        break;
+                    case "aircraftcarrier":
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        break;
+                }
+
+            }
         }
-        public void PlaceYourDestroyer()
-        {
-            Console.WriteLine("What starting x coordinate would you like to choose?");
-            xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What starting y coorinate would you like to choose?");
-            yToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending x coordinate would you like to choose?(Can be 2 more or less than start, must keep starting input of other axis)");
-            xToEnd = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending y coorinate would you like to choose?(Can be 2 more of less than start, must keep starting input of other axis)");
-            yToEnd = int.Parse(Console.ReadLine());
-            DestroyerLocation = new List<int>{ xToStart, yToStart, xToEnd, yToEnd };
-        }
-        public void PlaceYourSubmarine()
-        {
-            Console.WriteLine("What starting x coordinate would you like to choose?");
-            xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What starting y coorinate would you like to choose?");
-            yToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending x coordinate would you like to choose?(Can be 3 more or less than start, must keep starting input of other axis)");
-            xToEnd = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending y coorinate would you like to choose?(Can be 3 more of less than start, must keep starting input of other axis)");
-            yToEnd = int.Parse(Console.ReadLine());
-            SubmarineLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
-        }
-        public void PlaceYourBattleship()
-        {
-            Console.WriteLine("What starting x coordinate would you like to choose?");
-            xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What starting y coorinate would you like to choose?");
-            yToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending x coordinate would you like to choose?(Can be 4 more or less than start, must keep starting input of other axis)");
-            xToEnd = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending y coorinate would you like to choose?(Can be 4 more of less than start, must keep starting input of other axis)");
-            yToEnd = int.Parse(Console.ReadLine());
-            BattleshipLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
-        }
-        public void PlaceYourAircraftcarrier()
-        {
-            Console.WriteLine("What starting x coordinate would you like to choose?");
-            xToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What starting y coorinate would you like to choose?");
-            yToStart = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending x coordinate would you like to choose?(Can be 5 more or less than start, must keep starting input of other axis)");
-            xToEnd = int.Parse(Console.ReadLine());
-            Console.WriteLine("What ending y coorinate would you like to choose?(Can be 5 more of less than start, must keep starting input of other axis)");
-            yToEnd = int.Parse(Console.ReadLine());
-            AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
-        }        
-        
+                
         public override List<int> ChooseYourTarget()
         {
             Console.WriteLine("Which coordinates would you like to attack? ( x )");

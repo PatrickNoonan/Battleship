@@ -10,8 +10,15 @@ namespace BattleShip
     {
         //Does have
         //public InputValidation Validate;
-        public GameBoard MyGameBoard;
-        public List<string> ShipList;        
+        //public GameBoard MyGameBoard;
+        public List<string> ShipList;
+        public List<int> ShipLocation;
+        public List<int> DingyLocation;
+        public List<int> SubmarineLocation;
+        public List<int> DestroyerLocation;
+        public List<int> BattleshipLocation;
+        public List<int> AircraftCarrierLocation;
+        public List<int> AttackLocation;
         public double WinCount;
         public double TotalHits;
         public double TotalMisses;
@@ -24,35 +31,24 @@ namespace BattleShip
         public int yToStart;
         public int xToEnd;
         public int yToEnd;
-        public List<int> DingyLocation;
-        public List<int> DestroyerLocation;
-        public List<int> SubmarineLocation;
-        public List<int> BattleshipLocation;
-        public List<int> AircraftCarrierLocation;
-        public List<int> AttackLocation;
 
 
 
         //Constructor
         public Player()
         {
-            ShipList = new List<string>() { "destroyer", "submarine", "battleship", "aircraftcarrier"};
+            ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier"};
             WinCount = 0;
             TotalHits = 0;
             TotalMisses = 0;
             ShipsRemaining = 4;
             EnemyShipsSunk = 0;
-            MyGameBoard = new GameBoard();
+            //MyGameBoard = new GameBoard();
 
         }
         //Can do this
-        public virtual void PlaceYourShips()
+        public virtual void PlaceYourShip(string Player)
         {
-            
-        }
-        public virtual List<int> PlaceYourDingy(string Player)
-        {
-            return  new List<int> { };
         }
 
         public virtual void MarkShipLocation(int x, int y)
