@@ -15,6 +15,7 @@ namespace BattleShip
         public bool WasHit;
         public bool WasMiss;
         public string ShipKind;
+        public string GridDisplay;
 
         //Constructor
         public GridSquares()
@@ -23,7 +24,39 @@ namespace BattleShip
             HasBeenAttacked = false;
             WasHit = false;
             WasMiss = false;
-            ShipKind = "";
+            /*
+            if (WasHit == true)
+            {
+                GridDisplay = "X";
+            } else
+            {
+                GridDisplay = "O";
+            }
+            */
+            
+            switch (ShipKind)
+            {
+                case "dingy":
+                    GridDisplay = "d";
+                    break;
+                case "destroyer":
+                    GridDisplay = "D";
+                    break;
+                case "submarine":
+                    GridDisplay = "S";
+                    break;
+                case "battleship":
+                    GridDisplay = "B";
+                    break;
+                case "aircraftcarrier":
+                    GridDisplay = "A";
+                    break;
+                default:
+                    GridDisplay = "O";
+                    break;
+            }
+
+
 
         }
         //Can do this

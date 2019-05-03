@@ -47,7 +47,7 @@ namespace BattleShip
             WinCount = 0;
             TotalHits = 0;
             TotalMisses = 0;
-            ShipsRemaining = 1;
+            ShipsRemaining = 4;
             EnemyShipsSunk = 0;
             DingyHP = 1;
             DestroyerHP = 2;

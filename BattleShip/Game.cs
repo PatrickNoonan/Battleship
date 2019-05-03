@@ -20,6 +20,7 @@ namespace BattleShip
         public string PlayerTwoAttackResults;
         public string KeepPlaying;
         public double round;
+        public string YesOrNo;
         /*
         InputValidation Validate;
         Gestures2 MadeGestures;                
@@ -56,8 +57,11 @@ namespace BattleShip
             GameBoardP2.IstantiateCoordinates();
             SetShips();
             StartAttacks();
-            CheckForGameOver(MatchCountInt);
-            DisplaySeriesWinner();
+            if (PlayerOne.WinCount > 0 || PlayerTwo.WinCount > 0)
+            {
+                CheckForGameOver(MatchCountInt);
+                DisplaySeriesWinner();
+            }
 
         }
         public void EnterMainMenu()
@@ -91,7 +95,8 @@ namespace BattleShip
             GameBoardP1.MarkShipLocation(PlayerOne.SubmarineLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.BattleshipLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.AircraftCarrierLocation);
-            //GameBoardP1.DisplayGameBoard();
+            DisplayGameBoardPrompt();
+            
 
             PlayerTwo.ChooseYourCoordinates("PlayerTwo");
             GameBoardP2.MarkShipLocation(PlayerTwo.DingyLocation);
@@ -99,7 +104,8 @@ namespace BattleShip
             GameBoardP2.MarkShipLocation(PlayerTwo.SubmarineLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.BattleshipLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.AircraftCarrierLocation);
-            //GameBoardP2.DisplayGameBoard();
+            GameBoardP2.DisplayGameBoard();
+            DisplayGameBoardPrompt();
         }
 
         public void StartAttacks()
@@ -107,11 +113,13 @@ namespace BattleShip
             PlayerOne.ChooseYourTarget();
             PlayerOneAttackResults = GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
             PlayerAttackCheck(PlayerOneAttackResults, "PlayerOne");
+            DisplayGameBoardPrompt();
 
 
             PlayerTwo.ChooseYourTarget();
             PlayerTwoAttackResults = GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
             PlayerAttackCheck(PlayerTwoAttackResults, "PlayerTwo");
+            DisplayGameBoardPrompt();
 
         }
 
@@ -200,6 +208,23 @@ namespace BattleShip
                         break;
                 }
             }
+        }
+
+        public void DisplayGameBoardPrompt()
+        {
+            Console.WriteLine("Would you like to see PlayerOnes game board?(yes or no)");
+            YesOrNo = Console.ReadLine();
+                if ( YesOrNo == "yes")
+                {
+                    GameBoardP1.DisplayGameBoard();
+                }
+
+            Console.WriteLine("Would you like to see PlayerTwos game board?(yes or no)");
+            YesOrNo = Console.ReadLine();
+                if (YesOrNo == "yes")
+                {
+                    GameBoardP2.DisplayGameBoard();
+                }
         }
 
         public void CheckForGameOver(double Matches)
