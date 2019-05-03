@@ -83,9 +83,9 @@ namespace BattleShip
             WinCount++;
         }
 
-        public void ThisPlayerHitDingy()
+        public void ThisPlayerDingyHit()
         {
-            TotalHits++;
+            //TotalHits++;
             DingyHP--;
             if (DingyHP == 0)
             {
@@ -94,9 +94,9 @@ namespace BattleShip
 
         }
 
-        public void ThisPlayerHitDestroyer()
+        public void ThisPlayerDestroyerHit()
         {
-            TotalHits++;
+            //TotalHits++;
             DestroyerHP--;
             if (DestroyerHP == 0)
             {
@@ -104,9 +104,9 @@ namespace BattleShip
             }
 
         }
-        public void ThisPlayerHitSubmarine()
+        public void ThisPlayerSubmarineHit()
         {
-            TotalHits++;
+            //TotalHits++;
             SubmarineHP--;
             if (SubmarineHP == 0)
             {
@@ -114,9 +114,9 @@ namespace BattleShip
             }
 
         }
-        public void ThisPlayerHitBattleship()
+        public void ThisPlayerBattleshipHit()
         {
-            TotalHits++;
+            //TotalHits++;
             BattleshipHP--;
             if (BattleshipHP == 0)
             {
@@ -124,9 +124,9 @@ namespace BattleShip
             }
 
         }
-        public void ThisPlayerHitAircraftcarrier()
+        public void ThisPlayerAircraftcarrierHit()
         {
-            TotalHits++;
+            //TotalHits++;
             AircraftcarrierHP--;
             if (AircraftcarrierHP == 0)
             {

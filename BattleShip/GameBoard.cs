@@ -11,7 +11,7 @@ namespace BattleShip
         //has these
         public int SizeInput;
         public Coordinate[,] GameSquare;
-        public List<string> ShipList;
+        public List<string> ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier" };
 
 
         //Constructor
@@ -26,8 +26,7 @@ namespace BattleShip
         {
             Console.WriteLine("What size would you like the gameboard to be? (between 20 and 30)");
             SizeInput = int.Parse(Console.ReadLine());
-            ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier" };
-
+            
             //PlayerTwo.RandomNumber(WidthInput);
         }
 
@@ -45,7 +44,7 @@ namespace BattleShip
 
         public void MarkShipLocation(List<int> ShipLocationList)
         {
-            string ShipType = ShipList[ShipLocationList[4] - 1];
+            string ShipType = ShipList[ShipLocationList[4]];
             GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipIsOn = true;
             GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipKind = ShipType;
         }

@@ -28,10 +28,11 @@ namespace BattleShip
                 xToStart = int.Parse(Console.ReadLine());
                 Console.WriteLine($"{Player}, What starting y coordinate would you like to choose for your {ship}?");
                 yToStart = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship + 1)}");
+                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
                 xToEnd = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship + 1)}");
+                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
                 yToEnd = int.Parse(Console.ReadLine());
+                
                 
                 switch (ship)
                 {
@@ -49,6 +50,8 @@ namespace BattleShip
                         break;
                     case "aircraftcarrier":
                         AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
+                        Console.WriteLine(AircraftCarrierLocation[4]);
+                        Console.ReadLine();
                         break;
                 }
             }

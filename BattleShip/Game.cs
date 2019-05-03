@@ -133,27 +133,27 @@ namespace BattleShip
                     case "dingy":
                         Console.WriteLine("You sunk my Dingy!.. jerk");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitDingy();
+                        PlayerTwo.ThisPlayerDingyHit();
                         break;
                     case "destroyer":
                         Console.WriteLine("You hit enemy Destroyer!");
                         Console.ReadLine();
-                        PlayerOne.ThisPlayerHitDestroyer();
+                        PlayerTwo.ThisPlayerDestroyerHit();
                         break;
                     case "submarine":
                         Console.WriteLine("You hit enemy Submarine!");
                         Console.ReadLine();
-                        PlayerOne.ThisPlayerHitSubmarine();
+                        PlayerTwo.ThisPlayerSubmarineHit();
                         break;
                     case "battleship":
                         Console.WriteLine("You hit enemy Battleship!");
                         Console.ReadLine();
-                        PlayerOne.ThisPlayerHitBattleship();
+                        PlayerTwo.ThisPlayerBattleshipHit();
                         break;
                     case "aircraftcarrier":
                         Console.WriteLine("You hit enemy AircraftCarrier!");
                         Console.ReadLine();
-                        PlayerOne.ThisPlayerHitAircraftcarrier();
+                        PlayerTwo.ThisPlayerAircraftcarrierHit();
                         break;
                 }
             }
@@ -174,27 +174,27 @@ namespace BattleShip
                     case "dingy":
                         Console.WriteLine("You sunk my Dingy!.. jerk");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitDingy();
+                        PlayerOne.ThisPlayerDingyHit();
                         break;
                     case "destroyer":
                         Console.WriteLine("You hit enemy Destroyer!");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitDestroyer();
+                        PlayerOne.ThisPlayerDestroyerHit();
                         break;
                     case "submarine":
                         Console.WriteLine("You hit enemy Submarine!");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitSubmarine();
+                        PlayerOne.ThisPlayerSubmarineHit();
                         break;
                     case "battleship":
                         Console.WriteLine("You hit enemy Battleship!");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitBattleship();
+                        PlayerOne.ThisPlayerBattleshipHit();
                         break;
                     case "aircraftcarrier":
                         Console.WriteLine("You hit enemy AircraftCarrier!");
                         Console.ReadLine();
-                        PlayerTwo.ThisPlayerHitAircraftcarrier();
+                        PlayerOne.ThisPlayerAircraftcarrierHit();
                         break;
                 }
             }
