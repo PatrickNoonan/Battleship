@@ -9,8 +9,13 @@ namespace BattleShip
     class Game
     {
         //has these
-        Player PlayerTwo;
-        Player PlayerOne;
+        public Player PlayerTwo;
+        public Player PlayerOne;        
+        public GameBoard GameBoardP1;
+        public GameBoard GameBoardP2;
+        public string MatchCount;
+        public double MatchCountInt;
+        public double MatchHalf;
         /*InputValidation Validate;
         Gestures2 MadeGestures;        
         string KeepPlaying;
@@ -20,10 +25,6 @@ namespace BattleShip
         double round;
         double[] GridSize;
         */
-        public GameBoard MyGameBoard;
-        public string MatchCount;
-        public double MatchCountInt;
-        public double MatchHalf;
 
         //Constructor
         public Game()
@@ -34,7 +35,8 @@ namespace BattleShip
             round = 0;
             */
             PlayerOne = new Human();
-            MyGameBoard = new GameBoard();
+            GameBoardP1 = new GameBoard();
+            GameBoardP2 = new GameBoard();
 
         }
 
@@ -45,7 +47,8 @@ namespace BattleShip
             //{
             EnterMainMenu();
             //}
-            MyGameBoard.IstantiateCoordinates();
+            GameBoardP1.IstantiateCoordinates();
+            GameBoardP2.IstantiateCoordinates();
             SetShips();
             StartGame();
             //DecideWinner();
@@ -62,7 +65,8 @@ namespace BattleShip
             Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
             MatchCount = Console.ReadLine().ToLower();
             MatchCountInt = int.Parse(MatchCount);
-            MyGameBoard.UsersChoiceOfSize();
+            GameBoardP1.UsersChoiceOfSize();
+            GameBoardP2.UsersChoiceOfSize();
 
 
             if (PlayerTwoAIStatus == "human")
@@ -78,19 +82,32 @@ namespace BattleShip
 
         public void SetShips()
         {
-            List<int> ShipLocationP1 = PlayerOne.PlaceYourShip("PlayerOne");
-            List<int> ShipLocationP2 = PlayerTwo.PlaceYourShip("PlayerTwo");
-            MyGameBoard.MarkShipLocation(ShipLocationP1[0], ShipLocationP1[1], "ship");
-            MyGameBoard.MarkShipLocation(ShipLocationP2[0], ShipLocationP2[1], "ship");
+            PlayerOne.ChooseYourCoordinates("PlayerOne");
+            GameBoardP1.MarkShipLocation(PlayerOne.DingyLocation);
+            GameBoardP1.MarkShipLocation(PlayerOne.DestroyerLocation);
+            GameBoardP1.MarkShipLocation(PlayerOne.SubmarineLocation);
+            GameBoardP1.MarkShipLocation(PlayerOne.BattleshipLocation);
+            GameBoardP1.MarkShipLocation(PlayerOne.AircraftCarrierLocation);
+
+            PlayerTwo.ChooseYourCoordinates("PlayerTwo");
+            GameBoardP2.MarkShipLocation(PlayerTwo.DingyLocation);
+            GameBoardP2.MarkShipLocation(PlayerTwo.DestroyerLocation);
+            GameBoardP2.MarkShipLocation(PlayerTwo.SubmarineLocation);
+            GameBoardP2.MarkShipLocation(PlayerTwo.BattleshipLocation);
+            GameBoardP2.MarkShipLocation(PlayerTwo.AircraftCarrierLocation);
         }
 
         public void StartGame()
         {
-            List<int> AttackLocationP1 = PlayerOne.ChooseYourTarget();
-            List<int> AttackLocationP2 = PlayerTwo.ChooseYourTarget();
-            MyGameBoard.MarkTileAsAttacked(AttackLocationP1[0], AttackLocationP1[1]);
-            MyGameBoard.MarkTileAsAttacked(AttackLocationP2[0], AttackLocationP2[1]);
+            PlayerOne.ChooseYourTarget();
+            GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
+
+            PlayerTwo.ChooseYourTarget();
+            GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
+
         }
+
+
         /*
 
     public void DecideWinner()

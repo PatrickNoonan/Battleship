@@ -20,7 +20,7 @@ namespace BattleShip
         }
         //Can do this
 
-        public override void PlaceYourShip(string Player)
+        public override void ChooseYourCoordinates(string Player)//choose ship squares //run function to place ship, return the values of each
         {
             foreach (string ship in ShipList)
             {
@@ -36,34 +36,36 @@ namespace BattleShip
                 switch (ship)
                 {
                     case "dingy":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
                         break;
                     case "destroyer":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        DestroyerLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
                         break;
                     case "submarine":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        SubmarineLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
                         break;
                     case "battleship":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        BattleshipLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
                         break;
                     case "aircraftcarrier":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd };
+                        AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
                         break;
                 }
-
             }
         }
-                
-        public override List<int> ChooseYourTarget()
+
+        public override List<int> PlaceYourShip(string Player)
+        {
+            return new List<int> { };
+        }
+
+        public override void ChooseYourTarget()
         {
             Console.WriteLine("Which coordinates would you like to attack? ( x )");
             xToAttack = int.Parse(Console.ReadLine());
             Console.WriteLine("Which coordinates would you like to attack? ( y )");
             yToAttack = int.Parse(Console.ReadLine());
             AttackLocation = new List<int> { xToAttack, yToAttack };
-            return AttackLocation;
-
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BattleShip
         public bool ShipIsOn;
         public bool HasBeenAttacked;
         public bool WasHit;
-        public bool WasMissed;
+        public bool WasMiss;
         public string ShipKind;
 
         //Constructor
@@ -22,7 +22,7 @@ namespace BattleShip
             ShipIsOn = false;
             HasBeenAttacked = false;
             WasHit = false;
-            WasMissed = false;
+            WasMiss = false;
             ShipKind = "";
 
         }

@@ -31,6 +31,11 @@ namespace BattleShip
         public int yToStart;
         public int xToEnd;
         public int yToEnd;
+        public int DestroyerHP;
+        public int SubmarineHP;
+        public int BattleshipHP;
+        public int AircraftcarrierHP;
+
 
 
 
@@ -43,12 +48,23 @@ namespace BattleShip
             TotalMisses = 0;
             ShipsRemaining = 4;
             EnemyShipsSunk = 0;
-            //MyGameBoard = new GameBoard();
+            DestroyerHP = 2;
+            SubmarineHP = 3;
+            BattleshipHP = 4;
+            AircraftcarrierHP = 5;
+
+        //MyGameBoard = new GameBoard();
 
         }
         //Can do this
-        public virtual void PlaceYourShip(string Player)
+        public virtual void ChooseYourCoordinates(string Player)
         {
+
+        }
+
+        public virtual List<int> PlaceYourShip(string Player)
+        {
+            return new List<int> { };
         }
 
         public virtual void MarkShipLocation(int x, int y)
@@ -56,9 +72,8 @@ namespace BattleShip
 
         }
 
-        public virtual List<int> ChooseYourTarget()
+        public virtual void ChooseYourTarget()
         {
-            return new List<int> { };
         }
 
         public void ThisPlayerWon()
@@ -66,26 +81,61 @@ namespace BattleShip
             WinCount++;
         }
 
-        public void ThisPlayerHitSomething()
+        public void ThisPlayerHitDestroyer()
         {
             TotalHits++;
+            DestroyerHP--;
+            if (DestroyerHP == 0)
+            {
+                ThisPlayersShipWasSunk();
+            }
+
+        }
+        public void ThisPlayerHitSubmarine()
+        {
+            TotalHits++;
+            SubmarineHP--;
+            if (SubmarineHP == 0)
+            {
+                ThisPlayersShipWasSunk();
+            }
+
+        }
+        public void ThisPlayerHitBattleship()
+        {
+            TotalHits++;
+            BattleshipHP--;
+            if (BattleshipHP == 0)
+            {
+                ThisPlayersShipWasSunk();
+            }
+
+        }
+        public void ThisPlayerHitAircraftcarrier()
+        {
+            TotalHits++;
+            AircraftcarrierHP--;
+            if (AircraftcarrierHP == 0)
+            {
+                ThisPlayersShipWasSunk();
+            }
+
+        }
+        public void ThisPlayersShipWasSunk()
+        {
+            ShipsRemaining--;
+            if (ShipsRemaining == 0)
+            {
+                Console.Write("All Player ships have been sunk, Game Over");
+                Console.ReadLine();
+            }
         }
 
-        public void ThisPlayerMissedSomething()
+        public void ThisPlayerMissed()
         {
             TotalMisses++;
         }
 
-        public void ThisPlayersShipWasSunk()
-        {
-            ShipsRemaining--;
-        }
-
-        public void ThisPlayerSunkAnEnemyShip()
-        {
-            //Console.WriteLine($"You sunk an enemy {ShipType}")
-            EnemyShipsSunk++;
-        }       
 
         
 
