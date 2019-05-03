@@ -39,7 +39,13 @@ namespace BattleShip
                 {
                     GameSquare[x, y] = new Coordinate();
                 }
+
             }
+        }
+
+        public void DisplayGameBoard()
+        {
+
         }
 
         public void MarkShipLocation(List<int> ShipLocationList)

@@ -18,13 +18,14 @@ namespace BattleShip
         public double MatchHalf;
         public string PlayerOneAttackResults;
         public string PlayerTwoAttackResults;
-        /*InputValidation Validate;
-        Gestures2 MadeGestures;        
-        string KeepPlaying;
+        public string KeepPlaying;
+        public double round;
+        /*
+        InputValidation Validate;
+        Gestures2 MadeGestures;                
         string WhoWon;
         string ChoiceOne;
-        string ChoiceTwo;        
-        double round;
+        string ChoiceTwo;  
         double[] GridSize;
         */
 
@@ -40,24 +41,23 @@ namespace BattleShip
             PlayerTwo = new Human();
             GameBoardP1 = new GameBoard();
             GameBoardP2 = new GameBoard();
+            round = 0;
 
         }
 
         //does this
         public void RunGame()
         {
-            //if (round == 0)
-            //{
+            if (round == 0)
+            {
             EnterMainMenu();
-            //}
+            }
             GameBoardP1.IstantiateCoordinates();
             GameBoardP2.IstantiateCoordinates();
             SetShips();
-            StartGame();
-            //DecideWinner();
-            //CalculateSeriesLeader();
-            //CheckForGameOver(MatchCountInt);
-            //DisplaySeriesWinner();
+            StartAttacks();
+            CheckForGameOver(MatchCountInt);
+            DisplaySeriesWinner();
 
         }
         public void EnterMainMenu()
@@ -91,6 +91,7 @@ namespace BattleShip
             GameBoardP1.MarkShipLocation(PlayerOne.SubmarineLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.BattleshipLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.AircraftCarrierLocation);
+            //GameBoardP1.DisplayGameBoard();
 
             PlayerTwo.ChooseYourCoordinates("PlayerTwo");
             GameBoardP2.MarkShipLocation(PlayerTwo.DingyLocation);
@@ -98,9 +99,10 @@ namespace BattleShip
             GameBoardP2.MarkShipLocation(PlayerTwo.SubmarineLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.BattleshipLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.AircraftCarrierLocation);
+            //GameBoardP2.DisplayGameBoard();
         }
 
-        public void StartGame()
+        public void StartAttacks()
         {
             PlayerOne.ChooseYourTarget();
             PlayerOneAttackResults = GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
@@ -200,58 +202,32 @@ namespace BattleShip
             }
         }
 
-        /*
-
-    public void DecideWinner()
-    {
-        WhoWon = Player.ThisPlayerWon();
-    }
-
-    public void CalculateSeriesLeader()
-    {
-
-        if (WhoWon == "PlayerOne")
+        public void CheckForGameOver(double Matches)
         {
-            PlayerOne.ThisPlayerWon();
-        }
-        else if (WhoWon == "PlayerTwo")
-        {
-            PlayerTwo.ThisPlayerWon();
-        }
-        else
-        {
-            PlayerOne.NoPlayerWon();
-        }
-    }
-
-    public void CheckForGameOver(double Matches)
-    {
-        MatchHalf = Matches / 2;
-        while (PlayerOne.WinCount < MatchHalf && PlayerTwo.WinCount < MatchHalf)
-        {
-            Console.WriteLine($"The win count (Best of {Matches}) is " + PlayerOne.WinCount + " to " + PlayerTwo.WinCount + "... Keep Playing?");
-            KeepPlaying = Console.ReadLine().ToLower();
-            Validate.IsItValid(KeepPlaying);
-            if (KeepPlaying == "yes")
+            MatchHalf = Matches / 2;
+            while (PlayerOne.WinCount < MatchHalf && PlayerTwo.WinCount < MatchHalf)
             {
-                round++;
-                RunGame();
+                Console.WriteLine($"The win count (Best of {Matches}) is " + PlayerOne.WinCount + " to " + PlayerTwo.WinCount + "... Keep Playing?");
+                KeepPlaying = Console.ReadLine().ToLower();
+                //Validate.IsItValid(KeepPlaying);
+                if (KeepPlaying == "yes")
+                {
+                    round++;
+                    RunGame();
+                }
+                else
+                {
+                    Console.WriteLine("Ok peace out");
+                    Console.ReadLine();
+                }
             }
-            else
-            {
-                Console.WriteLine("Then close the console you quitter");
-                Console.ReadLine();
-            }
+            DisplaySeriesWinner();
         }
-    }
 
-    public void DisplaySeriesWinner()
-    {
-
-        Console.WriteLine("The Final Score is PlayerOne: " + PlayerOne.WinCount + " to PlayerTwo: " + PlayerTwo.WinCount + " GG EZ");
-        Console.ReadLine();
-
-    }
-    */
+        public void DisplaySeriesWinner()
+        {
+            Console.WriteLine("The Final Score is PlayerOne: " + PlayerOne.WinCount + " to PlayerTwo: " + PlayerTwo.WinCount + " GG");
+            Console.ReadLine();
+        }
     }
 }

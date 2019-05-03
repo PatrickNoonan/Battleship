@@ -47,7 +47,7 @@ namespace BattleShip
             WinCount = 0;
             TotalHits = 0;
             TotalMisses = 0;
-            ShipsRemaining = 4;
+            ShipsRemaining = 1;
             EnemyShipsSunk = 0;
             DingyHP = 1;
             DestroyerHP = 2;
@@ -137,12 +137,13 @@ namespace BattleShip
         public void ThisPlayersShipWasSunk()
         {
             ShipsRemaining--;
-            Console.WriteLine("ShipsRemaining");
+            Console.WriteLine("Ships remaining are " + ShipsRemaining);
             Console.ReadLine();
             if (ShipsRemaining == 0)
             {
                 Console.Write("All Player ships have been sunk, Game Over");
                 Console.ReadLine();
+                ThisPlayerWon();
             }
         }
 
