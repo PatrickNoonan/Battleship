@@ -9,17 +9,18 @@ namespace BattleShip
     abstract class GridSquares
     {
         //Does have
-        
+
         public bool ShipIsOn;
         public bool HasBeenAttacked;
         public bool WasHit;
         public bool WasMiss;
         public string ShipKind;
         public string GridDisplay;
+        public string PartialDisplay;
 
         //Constructor
         public GridSquares()
-        {            
+        {
             ShipIsOn = false;
             HasBeenAttacked = false;
             WasHit = false;
@@ -29,38 +30,44 @@ namespace BattleShip
 
         public void ChangeDisplay()
         {
-            /*
+
             if (WasHit == true)
             {
                 GridDisplay = "X";
-            } else
-            {
-                GridDisplay = "O";
+                PartialDisplay = "X";
             }
-            */
-
-            switch (ShipKind)
+            else if (WasMiss == true)
             {
-                case "dingy":
-                    GridDisplay = "d";
-                    break;
-                case "destroyer":
-                    GridDisplay = "D";
-                    break;
-                case "submarine":
-                    GridDisplay = "S";
-                    break;
-                case "battleship":
-                    GridDisplay = "B";
-                    break;
-                case "aircraftcarrier":
-                    GridDisplay = "A";
-                    break;
-                default:
-                    GridDisplay = "O";
-                    break;
+                GridDisplay = "M";
+                PartialDisplay = "M";
+            }
+            else
+            {
+
+                switch (ShipKind)
+                {
+                    case "dingy":
+                        GridDisplay = "d";
+                        break;
+                    case "destroyer":
+                        GridDisplay = "D";
+                        break;
+                    case "submarine":
+                        GridDisplay = "S";
+                        break;
+                    case "battleship":
+                        GridDisplay = "B";
+                        break;
+                    case "aircraftcarrier":
+                        GridDisplay = "A";
+                        break;
+                    default:
+                        GridDisplay = "O";
+                        PartialDisplay = "O";
+                        break;
+                }
             }
         }
-        
+
     }
 }

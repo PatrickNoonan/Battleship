@@ -9,10 +9,7 @@ namespace BattleShip
     abstract class Player
     {
         //Does have
-        //public InputValidation Validate;
-        //public GameBoard MyGameBoard;
         public List<string> ShipList;
-        public List<int> ShipLocation;
         public List<int> DingyLocation;
         public List<int> SubmarineLocation;
         public List<int> DestroyerLocation;
@@ -24,7 +21,6 @@ namespace BattleShip
         public double TotalMisses;
         public double ShipsRemaining;
         public double EnemyShipsSunk;
-        public string ShipType;
         public int Placement;
         public int xToAttack;
         public int yToAttack;
@@ -56,29 +52,11 @@ namespace BattleShip
             SubmarineHP = 3;
             BattleshipHP = 4;
             AircraftcarrierHP = 5;
-
-        //MyGameBoard = new GameBoard();
-
         }
+
         //Can do this
-        public virtual void ChooseYourCoordinates(string Player)
-        {
-
-        }
-
-        public virtual List<int> PlaceYourShip(string Player)
-        {
-            return new List<int> { };
-        }
-
-        public virtual void MarkShipLocation(int x, int y)
-        {
-
-        }
-
-        public virtual void ChooseYourTarget()
-        {
-        }
+        public virtual void ChooseYourCoordinates(string Player){}
+        public virtual void ChooseYourTarget(string Player){}
 
         public void ThisPlayerWon()
         {
@@ -93,9 +71,7 @@ namespace BattleShip
             {
                 ThisPlayersShipWasSunk();
             }
-
         }
-
         public void ThisPlayerDestroyerHit()
         {
             //TotalHits++;
@@ -104,7 +80,6 @@ namespace BattleShip
             {
                 ThisPlayersShipWasSunk();
             }
-
         }
         public void ThisPlayerSubmarineHit()
         {
@@ -114,7 +89,6 @@ namespace BattleShip
             {
                 ThisPlayersShipWasSunk();
             }
-
         }
         public void ThisPlayerBattleshipHit()
         {
@@ -124,7 +98,6 @@ namespace BattleShip
             {
                 ThisPlayersShipWasSunk();
             }
-
         }
         public void ThisPlayerAircraftcarrierHit()
         {
@@ -134,7 +107,6 @@ namespace BattleShip
             {
                 ThisPlayersShipWasSunk();
             }
-
         }
         public void ThisPlayersShipWasSunk()
         {
@@ -148,14 +120,14 @@ namespace BattleShip
                 ThisPlayerWon();
             }
         }
-
         public void ThisPlayerMissed()
         {
             TotalMisses++;
         }
-
-
-        
-
+        public void DisplayStats(string Player)
+        {
+            Console.WriteLine($"{Player} has " + TotalHits + " total hits, " + TotalMisses + " total misses, " + ShipsRemaining + " ships remaining, and has sank " + EnemyShipsSunk + " enemy ships.");
+            Console.ReadLine();
+        }
     }
 }

@@ -13,7 +13,6 @@ namespace BattleShip
         public Coordinate[,] GameSquare;
         public List<string> ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier" };
 
-
         //Constructor
         public GameBoard()
         {
@@ -21,38 +20,47 @@ namespace BattleShip
         }
 
         //does this
-        public void UsersChoiceOfSize()
+        public void UsersChoiceOfSize(string Player)
         {
-            Console.WriteLine("What size would you like your gameboard to be?");
+            Console.WriteLine($"{Player}, what size would you like your gameboard to be?");
             SizeInput = int.Parse(Console.ReadLine());
-            
-            //PlayerTwo.RandomNumber(WidthInput);
         }
 
         public void IstantiateCoordinates()
         {
             GameSquare = new Coordinate[SizeInput, SizeInput];
-            for (int y = 0; y < SizeInput; y++)
+            for (int x = 0; x < SizeInput; x++)
             {
-                for (int x = 0; x < SizeInput; x++)
+                for (int y = 0; y < SizeInput; y++)
                 {
-                    GameSquare[x, y] = new Coordinate();
+                    GameSquare[y, x] = new Coordinate();
                 }
             }
         }
 
         public void DisplayGameBoard()
         {
-            for (int y = 0; y < SizeInput; y++)
+            for (int x = 0; x < SizeInput; x++)
             {
-                for (int x = 0; x < SizeInput; x++)
+                for (int y = 0; y < SizeInput; y++)
                 {
-                    GameSquare[x, y].ChangeDisplay();
-                    Console.Write(GameSquare[x, y].GridDisplay + "  ");
+                    GameSquare[y, x].ChangeDisplay();
+                    Console.Write(GameSquare[y, x].GridDisplay + "  ");
+                }
+                Console.WriteLine();
+            }            
+        }
+        public void DisplayPartialGameBoard()
+        {
+            for (int x = 0; x < SizeInput; x++)
+            {
+                for (int y = 0; y < SizeInput; y++)
+                {
+                    GameSquare[y, x].ChangeDisplay();
+                    Console.Write(GameSquare[y, x].PartialDisplay + "  ");
                 }
                 Console.WriteLine();
             }
-            
         }
 
         public void MarkShipLocation(List<int> ShipLocationList)
@@ -70,7 +78,7 @@ namespace BattleShip
                     }
                     break;
                 case 2:
-                    for (int i = ShipLocationList[0]; i >= ShipLocationList[2]; i--)
+                    for (int i = ShipLocationList[0]; i <= ShipLocationList[2]; i++)
                     {
                         GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
                         GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
@@ -84,12 +92,12 @@ namespace BattleShip
                     }
                     break;
                 case 4:
-                    for (int i = ShipLocationList[0]; i <= ShipLocationList[2]; i++)
+                    for (int i = ShipLocationList[0]; i >= ShipLocationList[2]; i--)
                     {
                         GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
                         GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
                     }
-                    break;                    
+                    break;                                        
             }
         }
 

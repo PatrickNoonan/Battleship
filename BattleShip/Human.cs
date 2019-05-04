@@ -17,9 +17,9 @@ namespace BattleShip
 
 
         }
-        //Can do this
 
-        public override void ChooseYourCoordinates(string Player)//choose ship squares //run function to place ship, return the values of each
+        //Can do this
+        public override void ChooseYourCoordinates(string Player)
         {
             foreach (string ship in ShipList)
             {
@@ -27,36 +27,39 @@ namespace BattleShip
                 xToStart = int.Parse(Console.ReadLine());
                 Console.WriteLine($"{Player}, What starting y coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
                 yToStart = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, Would you like the rest of your {ship} length to be placed vertically (up or down) or horizonatally (left or right)?");
-                VertOrHori = Console.ReadLine();
-                if (VertOrHori == "vertical" || VertOrHori == "up")
+                if (ShipList.IndexOf(ship) > 0)
                 {
-                    Placement = 1;
-                    xToEnd = xToStart;
-                    yToEnd = yToStart - ShipList.IndexOf(ship);
-                } else if ( VertOrHori == "horizontally" || VertOrHori == "right")
-                {
-                    Placement = 2;
-                    yToEnd = yToStart;
-                    xToEnd = xToStart - ShipList.IndexOf(ship);
-                } else if ( VertOrHori == "down")
-                {
-                    Placement = 3;
-                    xToEnd = xToStart;
-                    yToEnd = yToStart + ShipList.IndexOf(ship);
-                } else if ( VertOrHori == "left" )
-                {
-                    Placement = 4;
-                    yToEnd = yToStart;
-                    xToEnd = xToStart + ShipList.IndexOf(ship);
-                } else
-                {
-                    //check validation and retry
-                }
-                
-                
-                
-                
+                    Console.WriteLine($"{Player}, Would you like the rest of your {ship} length to be placed vertically (up or down) or horizonatally (left or right)?");
+                    VertOrHori = Console.ReadLine();
+                    if (VertOrHori == "vertically" || VertOrHori == "up")
+                    {
+                        Placement = 1;
+                        xToEnd = xToStart;
+                        yToEnd = yToStart - ShipList.IndexOf(ship);
+                    }
+                    else if (VertOrHori == "horizontally" || VertOrHori == "right")
+                    {
+                        Placement = 2;
+                        yToEnd = yToStart;
+                        xToEnd = xToStart + ShipList.IndexOf(ship);
+                    }
+                    else if (VertOrHori == "down")
+                    {
+                        Placement = 3;
+                        xToEnd = xToStart;
+                        yToEnd = yToStart + ShipList.IndexOf(ship);
+                    }
+                    else if (VertOrHori == "left")
+                    {
+                        Placement = 4;
+                        yToEnd = yToStart;
+                        xToEnd = xToStart - ShipList.IndexOf(ship);
+                    }
+                    else
+                    {
+                        //check validation and retry
+                    }
+                }                
                 switch (ship)
                 {
                     case "dingy":
@@ -78,16 +81,11 @@ namespace BattleShip
             }
         }
 
-        public override List<int> PlaceYourShip(string Player)
+        public override void ChooseYourTarget(string Player)
         {
-            return new List<int> { };
-        }
-
-        public override void ChooseYourTarget()
-        {
-            Console.WriteLine("Which coordinates would you like to attack? ( x )");
+            Console.WriteLine($"{Player}, which coordinates would you like to attack? ( x )");
             xToAttack = int.Parse(Console.ReadLine());
-            Console.WriteLine("Which coordinates would you like to attack? ( y )");
+            Console.WriteLine($"{Player}, which coordinates would you like to attack? ( y )");
             yToAttack = int.Parse(Console.ReadLine());
             AttackLocation = new List<int> { xToAttack, yToAttack };
         }

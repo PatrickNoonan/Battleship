@@ -13,8 +13,6 @@ namespace BattleShip
           Game InstantiateNewGame = new Game();
           InstantiateNewGame.RunGame();
 
-          //Console.WriteLine($"{variable} is a pretty cool {variable}");
-
 
         }
     }

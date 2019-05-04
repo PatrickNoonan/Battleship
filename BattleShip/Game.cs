@@ -19,30 +19,15 @@ namespace BattleShip
         public string PlayerOneAttackResults;
         public string PlayerTwoAttackResults;
         public string KeepPlaying;
-        public double Round;
         public string YesOrNo;
-        /*
-        InputValidation Validate;
-        Gestures2 MadeGestures;                
-        string WhoWon;
-        string ChoiceOne;
-        string ChoiceTwo;  
-        double[] GridSize;
-        */
 
         //Constructor
         public Game()
         {
-            /*
-            Validate = new InputValidation();            
-            MadeGestures = new Gestures2();
-            round = 0;
-            */
             PlayerOne = new Human();
             PlayerTwo = new Human();
             GameBoardP1 = new GameBoard();
             GameBoardP2 = new GameBoard();
-
         }
 
         //does this
@@ -54,19 +39,23 @@ namespace BattleShip
                 SetRoundsInSeries();
                 SetGameBoardSize();
             }
+
             GameBoardP1.IstantiateCoordinates();
             GameBoardP2.IstantiateCoordinates();
             SetShips();
-            StartAttacks();
-            
-            //Checkforend of round then start code below
-            if (PlayerOne.WinCount > 0 || PlayerTwo.WinCount > 0)
+
+            while (PlayerOne.ShipsRemaining > 0 && PlayerTwo.ShipsRemaining > 0)
             {
-                CheckForGameOver(MatchCountInt);
-                DisplaySeriesWinner();
+                StartAttacks();
             }
 
+            if (PlayerOne.WinCount > 0 || PlayerTwo.WinCount > 0)
+            {
+                CheckForSeriesOver(MatchCountInt);
+                DisplaySeriesWinner();
+            }
         }
+
         public void EnterMainMenu()
         {
             Console.WriteLine("Welcome to Battleship.  Would you like to play vs an AI, or vs a Human? (AI or Human)");
@@ -85,17 +74,15 @@ namespace BattleShip
         public void SetRoundsInSeries()
         {
             Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
-            MatchCount = Console.ReadLine().ToLower();
+            MatchCount = Console.ReadLine();
             MatchCountInt = int.Parse(MatchCount);
         }
 
         public void SetGameBoardSize()
         {
-
-            GameBoardP1.UsersChoiceOfSize();
-            GameBoardP2.UsersChoiceOfSize();
+            GameBoardP1.UsersChoiceOfSize("PlayerOne");
+            GameBoardP2.UsersChoiceOfSize("PlayerTwo");
         }
-
 
         public void SetShips()
         {
@@ -105,8 +92,6 @@ namespace BattleShip
             GameBoardP1.MarkShipLocation(PlayerOne.SubmarineLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.BattleshipLocation);
             GameBoardP1.MarkShipLocation(PlayerOne.AircraftCarrierLocation);
-            DisplayGameBoardPrompt();
-            
 
             PlayerTwo.ChooseYourCoordinates("PlayerTwo");
             GameBoardP2.MarkShipLocation(PlayerTwo.DingyLocation);
@@ -114,29 +99,25 @@ namespace BattleShip
             GameBoardP2.MarkShipLocation(PlayerTwo.SubmarineLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.BattleshipLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.AircraftCarrierLocation);
-            DisplayGameBoardPrompt();
         }
 
         public void StartAttacks()
         {
-            PlayerOne.ChooseYourTarget();
+            DisplayGameBoardPrompt();
+            PlayerOne.ChooseYourTarget("Player One");
             PlayerOneAttackResults = GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
             PlayerAttackCheck(PlayerOneAttackResults, "PlayerOne");
+
             DisplayGameBoardPrompt();
-
-
-            PlayerTwo.ChooseYourTarget();
+            PlayerTwo.ChooseYourTarget("Player Two");
             PlayerTwoAttackResults = GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
             PlayerAttackCheck(PlayerTwoAttackResults, "PlayerTwo");
-            DisplayGameBoardPrompt();
-
         }
 
         public void PlayerAttackCheck(string Ship, string Player)
         {
             if (Player == "PlayerOne")
             {
-
                 switch (Ship)
                 {
                     case "previouslyAttacked":
@@ -219,31 +200,39 @@ namespace BattleShip
             }
         }
 
-        public void DisplayGameBoardPrompt()
+        public void DisplayGameBoardPrompt(string Player)
         {
-            Console.WriteLine("Would you like to see PlayerOnes game board and stats?(yes or no)");
-            YesOrNo = Console.ReadLine();
-                if ( YesOrNo == "yes")
-                {
+            if (Player == "Player One")
+            {
+                Console.WriteLine($"{Player}, would you like to see your current game board/stats, and enemy game board?(yes or no)");
+                YesOrNo = Console.ReadLine().ToLower();
+                if (YesOrNo == "yes")
+                {                    
                     GameBoardP1.DisplayGameBoard();
+                    GameBoardP2.DisplayPartialGameBoard();
+                    PlayerOne.DisplayStats("Player One");
                 }
-
-            Console.WriteLine("Would you like to see PlayerTwos game board and stats?(yes or no)");
-            YesOrNo = Console.ReadLine();
+            }
+            else if (Player == "Player Two")
+            {
+                Console.WriteLine($"{Player}, would you like to see your current game board/stats, and enemy game board?(yes or no)");
+                YesOrNo = Console.ReadLine().ToLower();
                 if (YesOrNo == "yes")
                 {
                     GameBoardP2.DisplayGameBoard();
+                    GameBoardP1.DisplayPartialGameBoard();
+                    PlayerTwo.DisplayStats("Player Two");
                 }
+            }
         }
 
-        public void CheckForGameOver(double Matches)
+        public void CheckForSeriesOver(double Matches)
         {
             MatchHalf = Matches / 2;
             while (PlayerOne.WinCount < MatchHalf && PlayerTwo.WinCount < MatchHalf)
             {
                 Console.WriteLine($"The win count (Best of {Matches}) is " + PlayerOne.WinCount + " to " + PlayerTwo.WinCount + "... Keep Playing?");
                 KeepPlaying = Console.ReadLine().ToLower();
-                //Validate.IsItValid(KeepPlaying);
                 if (KeepPlaying == "yes")
                 {
                     RunGame();
