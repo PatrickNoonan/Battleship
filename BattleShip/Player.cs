@@ -25,6 +25,7 @@ namespace BattleShip
         public double ShipsRemaining;
         public double EnemyShipsSunk;
         public string ShipType;
+        public int Placement;
         public int xToAttack;
         public int yToAttack;
         public int xToStart;
@@ -36,6 +37,7 @@ namespace BattleShip
         public int SubmarineHP;
         public int BattleshipHP;
         public int AircraftcarrierHP;
+        public string VertOrHori;
 
 
 

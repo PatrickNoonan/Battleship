@@ -24,6 +24,11 @@ namespace BattleShip
             HasBeenAttacked = false;
             WasHit = false;
             WasMiss = false;
+        }
+        //Can do this
+
+        public void ChangeDisplay()
+        {
             /*
             if (WasHit == true)
             {
@@ -33,7 +38,7 @@ namespace BattleShip
                 GridDisplay = "O";
             }
             */
-            
+
             switch (ShipKind)
             {
                 case "dingy":
@@ -55,11 +60,7 @@ namespace BattleShip
                     GridDisplay = "O";
                     break;
             }
-
-
-
         }
-        //Can do this
         
     }
 }

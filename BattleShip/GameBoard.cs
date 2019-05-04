@@ -20,11 +20,10 @@ namespace BattleShip
 
         }
 
-
         //does this
         public void UsersChoiceOfSize()
         {
-            Console.WriteLine("What size would you like the gameboard to be? (between 20 and 30)");
+            Console.WriteLine("What size would you like your gameboard to be?");
             SizeInput = int.Parse(Console.ReadLine());
             
             //PlayerTwo.RandomNumber(WidthInput);
@@ -48,6 +47,7 @@ namespace BattleShip
             {
                 for (int x = 0; x < SizeInput; x++)
                 {
+                    GameSquare[x, y].ChangeDisplay();
                     Console.Write(GameSquare[x, y].GridDisplay + "  ");
                 }
                 Console.WriteLine();
@@ -60,15 +60,36 @@ namespace BattleShip
             string ShipType = ShipList[ShipLocationList[4]];
             GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipIsOn = true;
             GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipKind = ShipType;
-            for (int i = ShipLocationList[0]; i < ShipLocationList[2]; i++)
+            switch (ShipLocationList[5])
             {
-                GameSquare[i, ShipLocationList[2]].ShipIsOn = true;
-                GameSquare[i, ShipLocationList[2]].ShipKind = ShipType;
-            }
-            for ( int i = ShipLocationList[1]; i < ShipLocationList[3]; i++)
-            {
-                GameSquare[i, ShipLocationList[3]].ShipIsOn = true;
-                GameSquare[i, ShipLocationList[3]].ShipKind = ShipType;
+                case 1:
+                    for (int i = ShipLocationList[1]; i >= ShipLocationList[3]; i--)
+                    {
+                        GameSquare[ShipLocationList[0], i].ShipIsOn = true;
+                        GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                    }
+                    break;
+                case 2:
+                    for (int i = ShipLocationList[0]; i >= ShipLocationList[2]; i--)
+                    {
+                        GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
+                        GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                    }
+                    break;
+                case 3:
+                    for (int i = ShipLocationList[1]; i <= ShipLocationList[3]; i++)
+                    {
+                        GameSquare[ShipLocationList[0], i].ShipIsOn = true;
+                        GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                    }
+                    break;
+                case 4:
+                    for (int i = ShipLocationList[0]; i <= ShipLocationList[2]; i++)
+                    {
+                        GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
+                        GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                    }
+                    break;                    
             }
         }
 

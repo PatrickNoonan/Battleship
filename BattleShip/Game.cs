@@ -19,7 +19,7 @@ namespace BattleShip
         public string PlayerOneAttackResults;
         public string PlayerTwoAttackResults;
         public string KeepPlaying;
-        public double round;
+        public double Round;
         public string YesOrNo;
         /*
         InputValidation Validate;
@@ -42,21 +42,24 @@ namespace BattleShip
             PlayerTwo = new Human();
             GameBoardP1 = new GameBoard();
             GameBoardP2 = new GameBoard();
-            round = 0;
 
         }
 
         //does this
         public void RunGame()
         {
-            if (round == 0)
+            if (PlayerOne.WinCount == 0 && PlayerTwo.WinCount == 0)
             {
-            EnterMainMenu();
+                EnterMainMenu();
+                SetRoundsInSeries();
+                SetGameBoardSize();
             }
             GameBoardP1.IstantiateCoordinates();
             GameBoardP2.IstantiateCoordinates();
             SetShips();
             StartAttacks();
+            
+            //Checkforend of round then start code below
             if (PlayerOne.WinCount > 0 || PlayerTwo.WinCount > 0)
             {
                 CheckForGameOver(MatchCountInt);
@@ -68,13 +71,6 @@ namespace BattleShip
         {
             Console.WriteLine("Welcome to Battleship.  Would you like to play vs an AI, or vs a Human? (AI or Human)");
             string PlayerTwoAIStatus = Console.ReadLine().ToLower();
-            //Validate.IsItValid(PlayerTwoAIStatus);
-            Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
-            MatchCount = Console.ReadLine().ToLower();
-            MatchCountInt = int.Parse(MatchCount);
-            GameBoardP1.UsersChoiceOfSize();
-            GameBoardP2.UsersChoiceOfSize();
-
 
             if (PlayerTwoAIStatus == "human")
             {
@@ -84,6 +80,20 @@ namespace BattleShip
             {
                 PlayerTwo = new CPU();
             }
+        }
+
+        public void SetRoundsInSeries()
+        {
+            Console.WriteLine("Would you like to play 1 time or play a series to the best of 3, 5, or 7?");
+            MatchCount = Console.ReadLine().ToLower();
+            MatchCountInt = int.Parse(MatchCount);
+        }
+
+        public void SetGameBoardSize()
+        {
+
+            GameBoardP1.UsersChoiceOfSize();
+            GameBoardP2.UsersChoiceOfSize();
         }
 
 
@@ -104,7 +114,6 @@ namespace BattleShip
             GameBoardP2.MarkShipLocation(PlayerTwo.SubmarineLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.BattleshipLocation);
             GameBoardP2.MarkShipLocation(PlayerTwo.AircraftCarrierLocation);
-            GameBoardP2.DisplayGameBoard();
             DisplayGameBoardPrompt();
         }
 
@@ -212,14 +221,14 @@ namespace BattleShip
 
         public void DisplayGameBoardPrompt()
         {
-            Console.WriteLine("Would you like to see PlayerOnes game board?(yes or no)");
+            Console.WriteLine("Would you like to see PlayerOnes game board and stats?(yes or no)");
             YesOrNo = Console.ReadLine();
                 if ( YesOrNo == "yes")
                 {
                     GameBoardP1.DisplayGameBoard();
                 }
 
-            Console.WriteLine("Would you like to see PlayerTwos game board?(yes or no)");
+            Console.WriteLine("Would you like to see PlayerTwos game board and stats?(yes or no)");
             YesOrNo = Console.ReadLine();
                 if (YesOrNo == "yes")
                 {
@@ -237,7 +246,6 @@ namespace BattleShip
                 //Validate.IsItValid(KeepPlaying);
                 if (KeepPlaying == "yes")
                 {
-                    round++;
                     RunGame();
                 }
                 else

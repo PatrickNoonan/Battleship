@@ -8,7 +8,6 @@ namespace BattleShip
 {
     class Human : Player
     {
-        //HumanPlayer is redundant
         //Does have
         
 
@@ -24,34 +23,56 @@ namespace BattleShip
         {
             foreach (string ship in ShipList)
             {
-                Console.WriteLine($"{Player}, What starting x coordinate would you like to choose for your {ship}?");
+                Console.WriteLine($"{Player}, What starting x coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
                 xToStart = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, What starting y coordinate would you like to choose for your {ship}?");
+                Console.WriteLine($"{Player}, What starting y coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
                 yToStart = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
-                xToEnd = int.Parse(Console.ReadLine());
-                Console.WriteLine($"{Player}, What ending coordinate would you like to choose for your {ship}?  It has a length of {ShipList.IndexOf(ship)}");
-                yToEnd = int.Parse(Console.ReadLine());
+                Console.WriteLine($"{Player}, Would you like the rest of your {ship} length to be placed vertically (up or down) or horizonatally (left or right)?");
+                VertOrHori = Console.ReadLine();
+                if (VertOrHori == "vertical" || VertOrHori == "up")
+                {
+                    Placement = 1;
+                    xToEnd = xToStart;
+                    yToEnd = yToStart - ShipList.IndexOf(ship);
+                } else if ( VertOrHori == "horizontally" || VertOrHori == "right")
+                {
+                    Placement = 2;
+                    yToEnd = yToStart;
+                    xToEnd = xToStart - ShipList.IndexOf(ship);
+                } else if ( VertOrHori == "down")
+                {
+                    Placement = 3;
+                    xToEnd = xToStart;
+                    yToEnd = yToStart + ShipList.IndexOf(ship);
+                } else if ( VertOrHori == "left" )
+                {
+                    Placement = 4;
+                    yToEnd = yToStart;
+                    xToEnd = xToStart + ShipList.IndexOf(ship);
+                } else
+                {
+                    //check validation and retry
+                }
+                
+                
                 
                 
                 switch (ship)
                 {
                     case "dingy":
-                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
+                        DingyLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship), Placement };
                         break;
                     case "destroyer":
-                        DestroyerLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
+                        DestroyerLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship), Placement };
                         break;
                     case "submarine":
-                        SubmarineLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
+                        SubmarineLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship), Placement };
                         break;
                     case "battleship":
-                        BattleshipLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
+                        BattleshipLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship), Placement };
                         break;
                     case "aircraftcarrier":
-                        AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship) };
-                        Console.WriteLine(AircraftCarrierLocation[4]);
-                        Console.ReadLine();
+                        AircraftCarrierLocation = new List<int> { xToStart, yToStart, xToEnd, yToEnd, ShipList.IndexOf(ship), Placement };
                         break;
                 }
             }
