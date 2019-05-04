@@ -43,7 +43,7 @@ namespace BattleShip
             }
             else
             {
-
+                PartialDisplay = "O";
                 switch (ShipKind)
                 {
                     case "dingy":
@@ -63,7 +63,6 @@ namespace BattleShip
                         break;
                     default:
                         GridDisplay = "O";
-                        PartialDisplay = "O";
                         break;
                 }
             }

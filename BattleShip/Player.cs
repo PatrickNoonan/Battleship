@@ -20,7 +20,6 @@ namespace BattleShip
         public double TotalHits;
         public double TotalMisses;
         public double ShipsRemaining;
-        public double EnemyShipsSunk;
         public int Placement;
         public int xToAttack;
         public int yToAttack;
@@ -35,18 +34,14 @@ namespace BattleShip
         public int AircraftcarrierHP;
         public string VertOrHori;
 
-
-
-
         //Constructor
         public Player()
         {
-            ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier"};
+            ShipList = new List<string>() { "dingy", "destroyer", "submarine", "battleship", "aircraftcarrier" };
             WinCount = 0;
             TotalHits = 0;
             TotalMisses = 0;
             ShipsRemaining = 4;
-            EnemyShipsSunk = 0;
             DingyHP = 1;
             DestroyerHP = 2;
             SubmarineHP = 3;
@@ -55,8 +50,8 @@ namespace BattleShip
         }
 
         //Can do this
-        public virtual void ChooseYourCoordinates(string Player){}
-        public virtual void ChooseYourTarget(string Player){}
+        public virtual void ChooseYourCoordinates(string Player) { }
+        public virtual void ChooseYourTarget(string Player) { }
 
         public void ThisPlayerWon()
         {
@@ -65,53 +60,53 @@ namespace BattleShip
 
         public void ThisPlayerDingyHit()
         {
-            //TotalHits++;
             DingyHP--;
             if (DingyHP == 0)
             {
+                Console.WriteLine("You Sank the enemy Dingy!");
                 ThisPlayersShipWasSunk();
             }
         }
         public void ThisPlayerDestroyerHit()
         {
-            //TotalHits++;
             DestroyerHP--;
             if (DestroyerHP == 0)
             {
+                Console.WriteLine("You Sank the enemy Destroyer!");
                 ThisPlayersShipWasSunk();
             }
         }
         public void ThisPlayerSubmarineHit()
         {
-            //TotalHits++;
             SubmarineHP--;
             if (SubmarineHP == 0)
             {
+                Console.WriteLine("You Sank the enemy Submarine!");
                 ThisPlayersShipWasSunk();
             }
         }
         public void ThisPlayerBattleshipHit()
         {
-            //TotalHits++;
             BattleshipHP--;
             if (BattleshipHP == 0)
             {
+                Console.WriteLine("You Sank the enemy Battle Ship!");
                 ThisPlayersShipWasSunk();
             }
         }
         public void ThisPlayerAircraftcarrierHit()
         {
-            //TotalHits++;
             AircraftcarrierHP--;
             if (AircraftcarrierHP == 0)
             {
+                Console.WriteLine("You Sank the enemy Aircraft Carrier!");
                 ThisPlayersShipWasSunk();
             }
         }
         public void ThisPlayersShipWasSunk()
         {
             ShipsRemaining--;
-            Console.WriteLine("Ships remaining are " + ShipsRemaining);
+            Console.WriteLine("Enemy ships remaining are " + ShipsRemaining);
             Console.ReadLine();
             if (ShipsRemaining == 0)
             {
@@ -120,14 +115,17 @@ namespace BattleShip
                 ThisPlayerWon();
             }
         }
+        public void ThisPlayerHitEnemy()
+        {
+            TotalHits++;
+        }
         public void ThisPlayerMissed()
         {
             TotalMisses++;
         }
         public void DisplayStats(string Player)
         {
-            Console.WriteLine($"{Player} has " + TotalHits + " total hits, " + TotalMisses + " total misses, " + ShipsRemaining + " ships remaining, and has sank " + EnemyShipsSunk + " enemy ships.");
-            Console.ReadLine();
+            Console.WriteLine($"{Player} has " + TotalHits + " total hits, " + TotalMisses + " total misses, and " + ShipsRemaining + " ships remaining.");
         }
     }
 }

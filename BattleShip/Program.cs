@@ -10,8 +10,8 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-          Game InstantiateNewGame = new Game();
-          InstantiateNewGame.RunGame();
+            Game InstantiateNewGame = new Game();
+            InstantiateNewGame.RunGame();
 
 
         }

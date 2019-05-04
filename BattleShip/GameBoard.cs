@@ -48,7 +48,7 @@ namespace BattleShip
                     Console.Write(GameSquare[y, x].GridDisplay + "  ");
                 }
                 Console.WriteLine();
-            }            
+            }
         }
         public void DisplayPartialGameBoard()
         {
@@ -66,38 +66,96 @@ namespace BattleShip
         public void MarkShipLocation(List<int> ShipLocationList)
         {
             string ShipType = ShipList[ShipLocationList[4]];
-            GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipIsOn = true;
-            GameSquare[ShipLocationList[0], ShipLocationList[1]].ShipKind = ShipType;
             switch (ShipLocationList[5])
             {
                 case 1:
                     for (int i = ShipLocationList[1]; i >= ShipLocationList[3]; i--)
                     {
-                        GameSquare[ShipLocationList[0], i].ShipIsOn = true;
-                        GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                        try
+                        {
+                            if (GameSquare[ShipLocationList[0], i].ShipIsOn == true)
+                            {
+                                Console.WriteLine("You've placed ships on top of eachother and they were destroyed, now you have to start over.");
+                                Console.ReadLine();
+                                Environment.Exit(0);
+                            }
+                            GameSquare[ShipLocationList[0], i].ShipIsOn = true;
+                            GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("You've placed your ship out of bounds and it has fallen off the side of the flat earth. Disqualified!");
+                            Console.ReadLine();
+                            Environment.Exit(0);
+                        }
                     }
                     break;
                 case 2:
                     for (int i = ShipLocationList[0]; i <= ShipLocationList[2]; i++)
                     {
-                        GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
-                        GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                        try
+                        {
+                            if (GameSquare[ShipLocationList[0], i].ShipIsOn == true)
+                            {
+                                Console.WriteLine("You've placed ships on top of eachother and they were destroyed, now you have to start over.");
+                                Console.ReadLine();
+                                Environment.Exit(0);
+                            }
+                            GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
+                            GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("You've placed your ship out of bounds and it has fallen off the side of the flat earth. Disqualified!");
+                            Console.ReadLine();
+                            Environment.Exit(0);
+                        }
                     }
                     break;
                 case 3:
                     for (int i = ShipLocationList[1]; i <= ShipLocationList[3]; i++)
                     {
-                        GameSquare[ShipLocationList[0], i].ShipIsOn = true;
-                        GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                        try
+                        {
+                            if (GameSquare[ShipLocationList[0], i].ShipIsOn == true)
+                            {
+                                Console.WriteLine("You've placed ships on top of eachother and they were destroyed, now you have to start over.");
+                                Console.ReadLine();
+                                Environment.Exit(0);
+                            }
+                            GameSquare[ShipLocationList[0], i].ShipIsOn = true;
+                            GameSquare[ShipLocationList[0], i].ShipKind = ShipType;
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("You've placed your ship out of bounds and it has fallen off the side of the flat earth. Disqualified!");
+                            Console.ReadLine();
+                            Environment.Exit(0);
+                        }
                     }
                     break;
                 case 4:
                     for (int i = ShipLocationList[0]; i >= ShipLocationList[2]; i--)
                     {
-                        GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
-                        GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                        try
+                        {
+                            if (GameSquare[ShipLocationList[0], i].ShipIsOn == true)
+                            {
+                                Console.WriteLine("You've placed ships on top of eachother and they were destroyed, now you have to start over.");
+                                Console.ReadLine();
+                                Environment.Exit(0);
+                            }
+                            GameSquare[i, ShipLocationList[1]].ShipIsOn = true;
+                            GameSquare[i, ShipLocationList[1]].ShipKind = ShipType;
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            Console.WriteLine("You've placed your ship out of bounds and it has fallen off the side of the flat earth. Disqualified!");
+                            Console.ReadLine();
+                            Environment.Exit(0);
+                        }
                     }
-                    break;                                        
+                    break;
             }
         }
 
@@ -105,7 +163,7 @@ namespace BattleShip
         {
             if (GameSquare[TargetedTile[0], TargetedTile[0]].HasBeenAttacked == true)
             {
-                return "previouslyAttacked";
+                return "Previously Attacked";
             }
             else
             {

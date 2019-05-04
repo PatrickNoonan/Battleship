@@ -67,7 +67,9 @@ namespace BattleShip
             }
             else if (PlayerTwoAIStatus == "ai")
             {
-                PlayerTwo = new CPU();
+                Console.WriteLine("This feature has not yet been implemented into the game, player two will be human.");
+                Console.ReadLine();
+                PlayerTwo = new Human();
             }
         }
 
@@ -103,12 +105,12 @@ namespace BattleShip
 
         public void StartAttacks()
         {
-            DisplayGameBoardPrompt();
+            DisplayGameBoardPrompt("Player One");
             PlayerOne.ChooseYourTarget("Player One");
             PlayerOneAttackResults = GameBoardP2.MarkTileAsAttacked(PlayerOne.AttackLocation, "PlayerOne");
             PlayerAttackCheck(PlayerOneAttackResults, "PlayerOne");
 
-            DisplayGameBoardPrompt();
+            DisplayGameBoardPrompt("Player Two");
             PlayerTwo.ChooseYourTarget("Player Two");
             PlayerTwoAttackResults = GameBoardP1.MarkTileAsAttacked(PlayerTwo.AttackLocation, "PlayerTwo");
             PlayerAttackCheck(PlayerTwoAttackResults, "PlayerTwo");
@@ -131,28 +133,33 @@ namespace BattleShip
                         PlayerOne.ThisPlayerMissed();
                         break;
                     case "dingy":
-                        Console.WriteLine("You sunk my Dingy!.. jerk");
+                        Console.WriteLine("You sank enemy Dingy!");
                         Console.ReadLine();
+                        PlayerOne.ThisPlayerHitEnemy();
                         PlayerTwo.ThisPlayerDingyHit();
                         break;
                     case "destroyer":
                         Console.WriteLine("You hit enemy Destroyer!");
                         Console.ReadLine();
+                        PlayerOne.ThisPlayerHitEnemy();
                         PlayerTwo.ThisPlayerDestroyerHit();
                         break;
                     case "submarine":
                         Console.WriteLine("You hit enemy Submarine!");
                         Console.ReadLine();
+                        PlayerOne.ThisPlayerHitEnemy();
                         PlayerTwo.ThisPlayerSubmarineHit();
                         break;
                     case "battleship":
                         Console.WriteLine("You hit enemy Battleship!");
                         Console.ReadLine();
+                        PlayerOne.ThisPlayerHitEnemy();
                         PlayerTwo.ThisPlayerBattleshipHit();
                         break;
                     case "aircraftcarrier":
                         Console.WriteLine("You hit enemy AircraftCarrier!");
                         Console.ReadLine();
+                        PlayerOne.ThisPlayerHitEnemy();
                         PlayerTwo.ThisPlayerAircraftcarrierHit();
                         break;
                 }
@@ -172,28 +179,33 @@ namespace BattleShip
                         PlayerTwo.ThisPlayerMissed();
                         break;
                     case "dingy":
-                        Console.WriteLine("You sunk my Dingy!.. jerk");
+                        Console.WriteLine("You sank enemy Dingy!");
                         Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitEnemy();
                         PlayerOne.ThisPlayerDingyHit();
                         break;
                     case "destroyer":
                         Console.WriteLine("You hit enemy Destroyer!");
                         Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitEnemy();
                         PlayerOne.ThisPlayerDestroyerHit();
                         break;
                     case "submarine":
                         Console.WriteLine("You hit enemy Submarine!");
                         Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitEnemy();
                         PlayerOne.ThisPlayerSubmarineHit();
                         break;
                     case "battleship":
                         Console.WriteLine("You hit enemy Battleship!");
                         Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitEnemy();
                         PlayerOne.ThisPlayerBattleshipHit();
                         break;
                     case "aircraftcarrier":
                         Console.WriteLine("You hit enemy AircraftCarrier!");
                         Console.ReadLine();
+                        PlayerTwo.ThisPlayerHitEnemy();
                         PlayerOne.ThisPlayerAircraftcarrierHit();
                         break;
                 }
@@ -207,10 +219,12 @@ namespace BattleShip
                 Console.WriteLine($"{Player}, would you like to see your current game board/stats, and enemy game board?(yes or no)");
                 YesOrNo = Console.ReadLine().ToLower();
                 if (YesOrNo == "yes")
-                {                    
+                {
                     GameBoardP1.DisplayGameBoard();
-                    GameBoardP2.DisplayPartialGameBoard();
                     PlayerOne.DisplayStats("Player One");
+                    Console.WriteLine("Here are your hits and misses on the enemies board");
+                    GameBoardP2.DisplayPartialGameBoard();
+
                 }
             }
             else if (Player == "Player Two")
@@ -220,8 +234,9 @@ namespace BattleShip
                 if (YesOrNo == "yes")
                 {
                     GameBoardP2.DisplayGameBoard();
-                    GameBoardP1.DisplayPartialGameBoard();
                     PlayerTwo.DisplayStats("Player Two");
+                    Console.WriteLine("Here are your hits and misses on the enemies board");
+                    GameBoardP1.DisplayPartialGameBoard();
                 }
             }
         }

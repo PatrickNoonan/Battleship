@@ -9,7 +9,7 @@ namespace BattleShip
     class Human : Player
     {
         //Does have
-        
+
 
         //Constructor
         public Human()
@@ -59,7 +59,7 @@ namespace BattleShip
                     {
                         //check validation and retry
                     }
-                }                
+                }
                 switch (ship)
                 {
                     case "dingy":

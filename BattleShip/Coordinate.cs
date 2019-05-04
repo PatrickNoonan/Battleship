@@ -20,6 +20,6 @@ namespace BattleShip
 
         //Can do this
 
-        
+
     }
 }
