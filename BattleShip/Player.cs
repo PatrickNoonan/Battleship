@@ -63,7 +63,6 @@ namespace BattleShip
             DingyHP--;
             if (DingyHP == 0)
             {
-                Console.WriteLine("You Sank the enemy Dingy!");
                 ThisPlayersShipWasSunk();
             }
         }
